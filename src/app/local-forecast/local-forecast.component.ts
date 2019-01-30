@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WeatherService } from './../weather/weather.service'
 
 @Component({
   selector: 'app-local-forecast',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LocalForecastComponent implements OnInit {
 
-  constructor() { }
+  constructor(private weather:WeatherService) { }
+
+  forecasts: any;
 
   ngOnInit() {
+  }
+
+  getForecast()
+  {
+    console.log("Calling LocalForecastComponent.showWeather()")
+    this.forecasts = this.weather.getWeather();
+    console.log(this.forecasts);
   }
 
 }
