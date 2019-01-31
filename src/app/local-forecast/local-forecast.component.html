@@ -1,11 +1,17 @@
 <p>
   local-forecast works!
 </p>
+
+
 <div>Forecast Observer Data</div>
 <div>Location: {{ forecast.location }}</div>
+<div>Date: {{ forecast.date }}</div>
+<div>Month: {{ monthNames[forecast.month] }}</div>
+<div>Year: {{ forecast.year }}</div>
 <div>Summary: {{ forecast.summary }}</div>
 <div>Icon: {{ forecast.icon }}</div>
 <div>precipProbability: {{ forecast.precipProbability }}</div>
+<div>Temperature: {{forecast.temperature }}</div>
 <div>temperatureHigh: {{ forecast.temperatureHigh }}</div>
 <div>temperatureLow: {{ forecast.temperatureLow }}</div>
 <div>Humidity: {{ forecast.humidity }}</div>

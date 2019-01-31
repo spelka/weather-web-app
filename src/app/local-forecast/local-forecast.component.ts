@@ -13,6 +13,13 @@ export class LocalForecastComponent implements OnInit {
 
   forecast : Forecast;
 
+  monthNames = [
+    "January", "February", "March",
+    "April", "May", "June", "July",
+    "August", "September", "October",
+    "November", "December"
+  ];
+
   ngOnInit()
   {
     console.log("Calling LocalForecastComponent.ngOnInit()")
@@ -29,8 +36,12 @@ export class LocalForecastComponent implements OnInit {
         location: data['timezone'],
         //Current (Day 0) Forecast
         summary: data.currently['summary'],
+        date: new Date(data.currently['time'] * 1000).getDate(),
+        month: new Date(data.currently['time'] * 1000).getMonth(),
+        year: new Date(data.currently['time'] * 1000).getFullYear(),
         icon: data.currently['icon'],
         precipProbability: data.currently['precipProbability'],
+        temperature: data.currently['temperature'],
         temperatureHigh: data.currently['temperatureHigh'],
         temperatureLow: data.currently['temperatureLow'],
         humidity: data.currently['humidity']
