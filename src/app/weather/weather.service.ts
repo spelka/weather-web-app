@@ -14,7 +14,7 @@ export class WeatherService {
 
   constructor(private http:HttpClient) { }
 
-  getWeather() {
+  getWeatherData() {
     console.log("Calling WeatherService.getWeather()")
     console.log("Target URL: " + this.TARGET_URL)
     return this.http.get(this.TARGET_URL);

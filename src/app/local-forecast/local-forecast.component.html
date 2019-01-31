@@ -1,8 +1,11 @@
 <p>
   local-forecast works!
 </p>
-<button (click)="getForecast()">Data</button>
-<div>{{(forecasts | async)?.timezone }}</div>
-<div>{{(forecasts | async)?.currently.summary }}</div>
-<div>{{(forecasts | async)?.currently.temperature }}</div>
-<div>{{(forecasts | async)?.currently.icon }}</div>
+<div>Forecast Observer Data</div>
+<div>Location: {{ forecast.location }}</div>
+<div>Summary: {{ forecast.summary }}</div>
+<div>Icon: {{ forecast.icon }}</div>
+<div>precipProbability: {{ forecast.precipProbability }}</div>
+<div>temperatureHigh: {{ forecast.temperatureHigh }}</div>
+<div>temperatureLow: {{ forecast.temperatureLow }}</div>
+<div>Humidity: {{ forecast.humidity }}</div>
