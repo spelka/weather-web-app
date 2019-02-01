@@ -1,3 +1,50 @@
+<div>
+  <div>
+    <h3>{{ forecast.temperature }}<span>°</span></h3>
+  </div>
+  <div>
+    <h4>{{ forecast.summary }}</h4>
+    <p>{{ forecast.location }}</p>
+  </div>
+</div>
+<hr/>
+<div>
+  <ul>
+    <li>
+      <div>Date: {{ monthNames[forecast.day1_month] }} {{ forecast.day1_date }}</div>
+      <div>Icon: {{ forecast.day1_icon }}</div>
+      <div>High: {{ forecast.day1_temperatureHigh }}</div>
+      <div>Low: {{ forecast.day1_temperatureLow }}</div>
+    </li>
+    <li>
+        <div>Date: {{ monthNames[forecast.day2_month] }} {{ forecast.day2_date }}</div>
+        <div>Icon: {{ forecast.day2_icon }}</div>
+        <div>High: {{ forecast.day2_temperatureHigh }}</div>
+        <div>Low: {{ forecast.day2_temperatureLow }}</div>
+    </li>
+    <li>
+        <div>Date: {{ monthNames[forecast.day3_month] }} {{ forecast.day3_date }}</div>
+        <div>Icon: {{ forecast.day3_icon }}</div>
+        <div>High: {{ forecast.day3_temperatureHigh }}</div>
+        <div>Low: {{ forecast.day3_temperatureLow }}</div>
+    </li>
+    <li>
+        <div>Date: {{ monthNames[forecast.day4_month] }} {{ forecast.day4_date }}</div>
+        <div>Icon: {{ forecast.day4_icon }}</div>
+        <div>High: {{ forecast.day4_temperatureHigh }}</div>
+        <div>Low: {{ forecast.day4_temperatureLow }}</div>
+    </li>
+    <li>
+        <div>Date: {{ monthNames[forecast.day5_month] }} {{ forecast.day5_date }}</div>
+        <div>Icon: {{ forecast.day5_icon }}</div>
+        <div>High: {{ forecast.day5_temperatureHigh }}</div>
+        <div>Low: {{ forecast.day5_temperatureLow }}</div>
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+<!--
 <div>Location: {{ forecast.location }}</div>
 <div>Date: {{ forecast.date }}</div>
 <div>Month: {{ monthNames[forecast.month] }}</div>
@@ -34,3 +81,4 @@
 <div>Icon: {{ forecast.day5_icon }}</div>
 <div>High: {{ forecast.day5_temperatureHigh }}</div>
 <div>Low: {{ forecast.day5_temperatureLow }}</div>
+-->

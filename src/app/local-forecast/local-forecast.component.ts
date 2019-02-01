@@ -50,7 +50,7 @@ export class LocalForecastComponent implements OnInit {
         year: new Date(data['currently']['time'] * 1000).getFullYear(),
         icon: data['currently']['icon'],
         precipProbability: data['currently']['precipProbability'],
-        temperature: data['currently']['temperature'],
+        temperature: Math.round(data['currently']['temperature']),
         temperatureHigh: data['currently']['temperatureHigh'],
         temperatureLow: data['currently']['temperatureLow'],
         humidity: data['currently']['humidity'],
