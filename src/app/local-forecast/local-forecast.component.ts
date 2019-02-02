@@ -91,4 +91,39 @@ export class LocalForecastComponent implements OnInit {
         day5_temperatureLow: Math.round(data['daily']['data'][5]['temperatureLow'])
       });
   }
+
+  getWeatherIcon(iconCode: string)
+  {
+    switch (iconCode)
+    {
+      case 'clear-day':
+        return 'wi wi-day-sunny';
+      case 'clear-night':
+        return 'wi wi-night-clear';
+      case 'rain':
+        return 'wi wi-showers';
+      case 'snow':
+        return 'wi wi-snow';
+      case 'sleet':
+        return 'wi wi-sleet';
+      case 'wind':
+        return 'wi wi-strong-wind';
+      case 'fog':
+        return 'wi wi-fog';
+      case 'cloudy':
+        return 'wi wi-cloudy';
+      case 'hail':
+        return 'wi wi-hail';
+      case 'thunderstorm':
+        return 'wi wi-thunderstorm';
+      case 'tornado':
+        return 'wi wi-tornado';
+      case 'partly-cloudy-day':
+        return 'wi wi-day-cloudy';
+      case 'partly-cloudy-night':
+        return 'wi wi-night-partly-cloudy';
+      default:
+        return 'wi wi-day-cloudy';
+    }
+  }
 }
