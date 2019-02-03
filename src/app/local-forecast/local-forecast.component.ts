@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WeatherService } from './../weather/weather.service'
 import { Forecast } from './../Forecast';
 import { Observable } from 'rxjs';
+import { Location } from './../Location'
 
 @Component({
   selector: 'app-local-forecast',
@@ -14,6 +15,7 @@ export class LocalForecastComponent implements OnInit {
 
   forecast : Forecast;
   weatherData : Observable<Object>;
+  locationList: Location[];
   
   monthNames = [
     "January", "February", "March",
@@ -25,8 +27,8 @@ export class LocalForecastComponent implements OnInit {
   ngOnInit()
   {
     console.log("Calling LocalForecastComponent.ngOnInit()");
-    this.getWeatherData();
-    this.getForecast();
+    this.initLocationData();
+    this.initDropdownList();
   }
 
   getWeatherData()
@@ -38,9 +40,6 @@ export class LocalForecastComponent implements OnInit {
   {
     console.log("Calling LocalForecastComponent.getForecast()");
       //subscribe to the incoming observable data and clone fields into the Forecast object
-
-      
-
       this.weatherData.subscribe((data: any) => this.forecast = {
         //Current (Today's) Forecast
         location: data['timezone'],
@@ -125,5 +124,111 @@ export class LocalForecastComponent implements OnInit {
       default:
         return 'wi wi-day-cloudy';
     }
+  }
+
+  //Initializes a simple list of locations and their associated lat-long coordinates
+  initLocationData()
+  {
+    this.locationList = [
+      {
+        name: "New York City, America",
+        latitude: 40.730610,
+        longitude: -73.935242
+      } as Location,
+      {
+        name: "Sydney, Australia",
+        latitude: -33.947346,
+        longitude: 151.179428
+      } as Location,
+      {
+        name: "São Paulo, Brazil",
+        latitude: -23.533773,
+        longitude: -46.625290
+      } as Location,
+      {
+        name: "Toronto, Canada",
+        latitude: 43.653908,
+        longitude: -79.384293
+      } as Location,
+      {
+        name: "Hong Kong, China",
+        latitude: 22.308046,
+        longitude: 113.918480
+      } as Location,
+      {
+        name: "London, England",
+        latitude: 51.509865,
+        longitude: -0.118092
+      } as Location,
+      {
+        name: "Frankfurt, Germany",
+        latitude: 50.110924,
+        longitude: 8.682127
+      } as Location,
+      {
+        name: "Mumbai (Bombay), India",
+        latitude: 18.929863,
+        longitude: 72.833427
+      } as Location,
+      {
+        name: "Tokyo, Japan",
+        latitude: 35.689488,
+        longitude: 139.691706
+      } as Location,
+      {
+        name: "Johannesburg, South Africa",
+        latitude: -26.195246,
+        longitude: 28.034088
+      } as Location,
+      {
+        name: "Madrid, Spain",
+        latitude: 40.416775,
+        longitude: -3.703790
+      } as Location,
+      {
+        name: "Zurich, Switzerland",
+        latitude: 47.451542,
+        longitude: 8.564572
+      } as Location,
+      {
+        name: "Taipei City, Taiwan",
+        latitude: 25.105497,
+        longitude: 121.597366
+      } as Location
+    ];
+  }
+
+  //initializes the select dropdown list
+  initDropdownList()
+  {
+    console.log("calling LocalForecastComponent.initDropDownList()");
+    var selectList : HTMLElement = document.getElementById("city-select");
+
+    if (selectList == null)
+    {
+      console.log("FUC");
+    }
+
+    for (var i = 0; i < this.locationList.length; i++)
+    {
+      var option = document.createElement("option");
+      option.value = this.locationList[i].name;
+      option.text = this.locationList[i].name;
+      selectList.appendChild(option);
+    }
+  }
+
+  getLatLongString(cityName: string): string
+  {
+    console.log("calling geocoding.getGetLocationString");
+    for (var i = 0; i < this.locationList.length ; i++)
+    {
+      if (this.locationList[i].name === cityName)
+      {
+        console.log("geocoding.getGetLocationString returning " + this.locationList[i].latitude + "," + this.locationList[i].longitude);
+        return "" + this.locationList[i].latitude + "," + this.locationList[i].longitude;
+      }
+    }
+    return "0,0";
   }
 }
