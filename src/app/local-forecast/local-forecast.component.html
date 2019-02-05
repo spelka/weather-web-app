@@ -1,4 +1,6 @@
-<!-- layout testing styles to be removed later
+<!--layout testing styles to be removed later-->
+
+<!--
 <style>
   body
   {
@@ -20,11 +22,20 @@
     border: 3px dotted blue;
   }
 </style>
- -->
+-->
+
  <!-- city select -->
-<div>
-  <select id="city-select"></select>
-  <button (click)="getWeatherForecast()" type="button">Get Weather Forecast</button>
+<div class ="container my-container">
+  <div class="row justify-content-center">
+      <h1>Weather Forecast App</h1>
+  </div>
+  <div class="row justify-content-center">
+      <a href="https://www.darksky.net">Powered by the Darksky API</a> 
+  </div>
+  <div class="row justify-content-center">
+      <select id="city-select" style="margin:5px;"></select>
+      <button (click)="getWeatherForecast()" style="margin:5px;" type="button">Get Weather Forecast</button>
+  </div>
 </div>
 
 <hr/>
