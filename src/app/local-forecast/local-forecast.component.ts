@@ -31,9 +31,10 @@ export class LocalForecastComponent implements OnInit {
     this.initDropdownList();
   }
 
-  getWeatherData()
+  setWeatherData(latlong:string)
   {
-    this.weatherData = this.weather.getWeatherData();
+    console.log("Calling LocalForecastComponent.setWeatherData()");
+    this.weatherData = this.weather.getWeatherData(latlong);
   }
 
   getForecast()
@@ -129,6 +130,7 @@ export class LocalForecastComponent implements OnInit {
   //Initializes a simple list of locations and their associated lat-long coordinates
   initLocationData()
   {
+    console.log("calling LocalForecastComponent.initLocationData()");
     this.locationList = [
       {
         name: "New York City, America",
@@ -204,11 +206,6 @@ export class LocalForecastComponent implements OnInit {
     console.log("calling LocalForecastComponent.initDropDownList()");
     var selectList : HTMLElement = document.getElementById("city-select");
 
-    if (selectList == null)
-    {
-      console.log("FUC");
-    }
-
     for (var i = 0; i < this.locationList.length; i++)
     {
       var option = document.createElement("option");
@@ -220,15 +217,31 @@ export class LocalForecastComponent implements OnInit {
 
   getLatLongString(cityName: string): string
   {
-    console.log("calling geocoding.getGetLocationString");
+    console.log("calling LocalForecastComponent.getGetLocationString");
     for (var i = 0; i < this.locationList.length ; i++)
     {
       if (this.locationList[i].name === cityName)
       {
-        console.log("geocoding.getGetLocationString returning " + this.locationList[i].latitude + "," + this.locationList[i].longitude);
+        console.log("LocalForecastComponent.getGetLocationString returning " + this.locationList[i].latitude + "," + this.locationList[i].longitude);
         return "" + this.locationList[i].latitude + "," + this.locationList[i].longitude;
       }
     }
     return "0,0";
   }
+
+    //get the weather forecast for the city selected in the dropdown menu
+    getWeatherForecast()
+    {
+      console.log("calling LocalForecastComponent.getWeatherForecast()");
+      //Get the value from the selected Element
+      //Note: Have to cast TypeScript HTMLElements to HTMLInputElements in order to access their value
+      var location = <HTMLInputElement>document.getElementById("city-select");
+      console.log("LOG: " + location.value);
+  
+      //make the HTTP request for the selected city and store the response in the component
+      this.setWeatherData(this.getLatLongString(location.value));
+
+      //update the display with the forecast data
+      this.getForecast();
+    }
 }
