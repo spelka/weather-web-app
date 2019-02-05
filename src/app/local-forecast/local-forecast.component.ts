@@ -29,6 +29,7 @@ export class LocalForecastComponent implements OnInit {
     console.log("Calling LocalForecastComponent.ngOnInit()");
     this.initLocationData();
     this.initDropdownList();
+    this.getWeatherForecast();
   }
 
   setWeatherData(latlong:string)
