@@ -51,7 +51,7 @@ export class LocalForecastComponent implements OnInit {
         year: new Date(data['currently']['time'] * 1000).getFullYear(),
         icon: data['currently']['icon'],
         precipProbability: data['currently']['precipProbability'],
-        temperature: Math.round(data['currently']['temperature']),
+        temperature: Math.round(this.getCelsiusTemperature(data['currently']['temperature'])),
         temperatureHigh: data['currently']['temperatureHigh'],
         temperatureLow: data['currently']['temperatureLow'],
         humidity: data['currently']['humidity'],
@@ -60,36 +60,36 @@ export class LocalForecastComponent implements OnInit {
         day1_date: new Date(data['daily']['data'][1]['time'] * 1000).getDate(),
         day1_month: new Date(data['daily']['data'][1]['time'] * 1000).getMonth(),
         day1_icon: data['daily']['data'][1]['icon'],
-        day1_temperatureHigh: Math.round(data['daily']['data'][1]['temperatureHigh']),
-        day1_temperatureLow: Math.round(data['daily']['data'][1]['temperatureLow']),
+        day1_temperatureHigh: Math.round(this.getCelsiusTemperature(data['daily']['data'][1]['temperatureHigh'])),
+        day1_temperatureLow: Math.round(this.getCelsiusTemperature(data['daily']['data'][1]['temperatureLow'])),
 
         //+2 Day Forecast
         day2_date: new Date(data['daily']['data'][2]['time'] * 1000).getDate(),
         day2_month: new Date(data['daily']['data'][2]['time'] * 1000).getMonth(),
         day2_icon: data['daily']['data'][2]['icon'],
-        day2_temperatureHigh: Math.round(data['daily']['data'][2]['temperatureHigh']),
-        day2_temperatureLow: Math.round(data['daily']['data'][2]['temperatureLow']),
+        day2_temperatureHigh: Math.round(this.getCelsiusTemperature(data['daily']['data'][2]['temperatureHigh'])),
+        day2_temperatureLow: Math.round(this.getCelsiusTemperature(data['daily']['data'][2]['temperatureLow'])),
 
         //+3 Day Forecast
         day3_date: new Date(data['daily']['data'][3]['time'] * 1000).getDate(),
         day3_month: new Date(data['daily']['data'][3]['time'] * 1000).getMonth(),
         day3_icon: data['daily']['data'][3]['icon'],
-        day3_temperatureHigh: Math.round(data['daily']['data'][3]['temperatureHigh']),
-        day3_temperatureLow: Math.round(data['daily']['data'][3]['temperatureLow']),
+        day3_temperatureHigh: Math.round(this.getCelsiusTemperature(data['daily']['data'][3]['temperatureHigh'])),
+        day3_temperatureLow: Math.round(this.getCelsiusTemperature(data['daily']['data'][3]['temperatureLow'])),
 
         //+4 Day Forecast
         day4_date: new Date(data['daily']['data'][4]['time'] * 1000).getDate(),
         day4_month: new Date(data['daily']['data'][4]['time'] * 1000).getMonth(),
         day4_icon: data['daily']['data'][4]['icon'],
-        day4_temperatureHigh: Math.round(data['daily']['data'][4]['temperatureHigh']),
-        day4_temperatureLow: Math.round(data['daily']['data'][4]['temperatureLow']),
+        day4_temperatureHigh: Math.round(this.getCelsiusTemperature(data['daily']['data'][4]['temperatureHigh'])),
+        day4_temperatureLow: Math.round(this.getCelsiusTemperature(data['daily']['data'][4]['temperatureLow'])),
 
         //+5 Day Forecast
         day5_date: new Date(data['daily']['data'][5]['time'] * 1000).getDate(),
         day5_month: new Date(data['daily']['data'][5]['time'] * 1000).getMonth(),
         day5_icon: data['daily']['data'][5]['icon'],
-        day5_temperatureHigh: Math.round(data['daily']['data'][5]['temperatureHigh']),
-        day5_temperatureLow: Math.round(data['daily']['data'][5]['temperatureLow'])
+        day5_temperatureHigh: Math.round(this.getCelsiusTemperature(data['daily']['data'][5]['temperatureHigh'])),
+        day5_temperatureLow: Math.round(this.getCelsiusTemperature(data['daily']['data'][5]['temperatureLow']))
       });
   }
 
@@ -134,69 +134,75 @@ export class LocalForecastComponent implements OnInit {
     console.log("calling LocalForecastComponent.initLocationData()");
     this.locationList = [
       {
-        name: "New York City, America",
-        latitude: 40.730610,
-        longitude: -73.935242
+        name: "Calgary, Alberta",
+        latitude: 51.048615,
+        longitude: -114.070847
       } as Location,
       {
-        name: "Sydney, Australia",
-        latitude: -33.947346,
-        longitude: 151.179428
+        name: "Edmonton, Alberta",
+        latitude: 53.544449,
+        longitude: -113.490913
       } as Location,
       {
-        name: "São Paulo, Brazil",
-        latitude: -23.533773,
-        longitude: -46.625290
+        name: "Halifax, Nova Scotia",
+        latitude: 44.648766,
+        longitude: -63.575237
       } as Location,
       {
-        name: "Toronto, Canada",
-        latitude: 43.653908,
-        longitude: -79.384293
+        name: "Montréal, Quebec",
+        latitude: 45.501690,
+        longitude: -73.567253
       } as Location,
       {
-        name: "Hong Kong, China",
-        latitude: 22.308046,
-        longitude: 113.918480
-      } as Location,
-      {
-        name: "London, England",
+        name: "Ottawa, Ontario",
         latitude: 51.509865,
         longitude: -0.118092
       } as Location,
       {
-        name: "Frankfurt, Germany",
-        latitude: 50.110924,
-        longitude: 8.682127
+        name: "Québec City, Quebec",
+        latitude: 46.813877,
+        longitude: -71.207977
       } as Location,
       {
-        name: "Mumbai (Bombay), India",
-        latitude: 18.929863,
-        longitude: 72.833427
+        name: "Regina, Saskatchewan",
+        latitude: 50.448761,
+        longitude: -104.617310
       } as Location,
       {
-        name: "Tokyo, Japan",
-        latitude: 35.689488,
-        longitude: 139.691706
+        name: "Saskatoon, Saskatchewan",
+        latitude: 52.133213,
+        longitude: -106.670044
       } as Location,
       {
-        name: "Johannesburg, South Africa",
-        latitude: -26.195246,
-        longitude: 28.034088
+        name: "Toronto, Ontario",
+        latitude: 43.653908,
+        longitude: -79.384293
       } as Location,
       {
-        name: "Madrid, Spain",
-        latitude: 40.416775,
-        longitude: -3.703790
+        name: "Vancouver, British Columbia",
+        latitude: 49.263569,
+        longitude: -123.138573
+      } as Location,
+
+      {
+        name: "Victoria, British Columbia",
+        latitude: 48.428421,
+        longitude: -123.365646
       } as Location,
       {
-        name: "Zurich, Switzerland",
-        latitude: 47.451542,
-        longitude: 8.564572
+        name: "Whitehorse, Yukon",
+        latitude: 60.721188,
+        longitude: -135.056839
       } as Location,
       {
-        name: "Taipei City, Taiwan",
-        latitude: 25.105497,
-        longitude: 121.597366
+        name: "Winnipeg, Manitoba",
+        latitude: 49.895138,
+        longitude: -97.138374
+      } as Location,
+      {
+        name: "Yellowknife, Northwest",
+        latitude: 60.721188,
+        longitude: -135.056839
       } as Location
     ];
   }
@@ -244,5 +250,10 @@ export class LocalForecastComponent implements OnInit {
 
       //update the display with the forecast data
       this.getForecast();
+    }
+
+    getCelsiusTemperature(farenheit: number)
+    {
+      return (farenheit - 32) * (5/9);
     }
 }
